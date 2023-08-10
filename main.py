@@ -51,6 +51,27 @@ screen.fill(BG)
 
 pygame.display.flip()
 
+
+spriteSheet = pygame.image.load('assets/sprite.png')
+
+def get_image(sheet, frame, width, height, scale):
+    image = pygame.Surface((width, height))
+    image.blit(sheet, (0, 0), ((frame * width), 0, width, height))
+    image = pygame.transform.scale(image, (width*scale, height*scale))
+    return image
+
+animation_list = []
+animation_talk = 3
+last_update = pygame.time.get_ticks()
+animation_cooldown = 500
+frame = 0
+
+animation_list = []
+animation_talk = 3
+
+for x in range(animation_talk):
+    animation_list.append(get_image(spriteSheet,  x, 82, 118, 2.5))
+
 # SCREEN SELECT
 main = 0
 game = 1
@@ -78,6 +99,16 @@ while running:
 
     elif current == game:
         screen.fill(BG)
+
+        current_time = pygame.time.get_ticks()
+        if current_time - last_update >= animation_cooldown:
+            frame += 1
+            last_update = current_time;
+            if frame >= len(animation_list) - 1:
+                frame = 0
+
+        screen.blit(animation_list[frame], (0, 0))
+
 
 
 
