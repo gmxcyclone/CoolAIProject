@@ -108,10 +108,10 @@ while running:
             if frame >= len(animation_list) - 1:
                 frame = 0
 
-        screen.blit(animation_list[frame], (210, 90))
+        screen.blit(animation_list[frame], (210, 40))
 
         timer.tick(60)
-        pygame.draw.rect(screen, 'white', [0, 400, 700, 200])
+        pygame.draw.rect(screen, 'white', [0, 350, 700, 200])
 
 
 
