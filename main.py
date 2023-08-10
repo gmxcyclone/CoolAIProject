@@ -16,7 +16,7 @@ red = (145, 70, 70)
 text = (191, 191, 191)
 
 # START BUTTON
-startButton = Button((145, 70, 70), 250, 200, 150, 50, "Start Chat")
+startButton = Button((145, 70, 70), (50, 0, 0), 250, 200, 150, 50, "Start Chat")
 
 # background
 startBackground = pygame.image.load('assets/background.jpg')
