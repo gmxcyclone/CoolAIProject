@@ -17,7 +17,7 @@ txtFont = pygame.font.SysFont('Times New Roman', 110)
 
 screen = pygame.display.set_mode((640, 480))
 
-pygame.display.set_caption("CoolAIProject")
+pygame.display.set_caption("GhostChat")
 
 screen.fill(BG)
 
