@@ -13,6 +13,12 @@ class Button:
 
     def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height), 0)
+        pos = pygame.mouse.get_pos()
+        if self.rect.collidepoint(pos):
+            if pygame.rect.collidepoint(pos):
+                if pygame.mouse.get_pressed()[0]:
+
+
 
         if self.text != '':
             font = pygame.font.SysFont('Times New Roman', 30)
