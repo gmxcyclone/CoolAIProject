@@ -10,14 +10,18 @@ class Button:
         self.width = width
         self.height = height
         self.text = text
+        self.clicked = False
 
     def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height), 0)
         pos = pygame.mouse.get_pos()
         if self.rect.collidepoint(pos):
             if pygame.rect.collidepoint(pos):
-                if pygame.mouse.get_pressed()[0]:
-
+                if pygame.mouse.get_pressed()[0] and not self.clicked:
+                    selfe.clicked = True
+                    print("Click")
+                if not pygame.mouse.get_pressed()[0]:
+                    self.clicked = False
 
 
         if self.text != '':
