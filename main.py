@@ -51,6 +51,11 @@ screen.fill(BG)
 
 pygame.display.flip()
 
+# SCREEN SELECT
+main = 0
+game = 1
+current = main
+
 running = True
 
 while running:
@@ -58,21 +63,22 @@ while running:
         if event.type == pygame.QUIT:
             pygame.quit()
 
-    draw_startBackground()
-    draw_title()
-    startButton.draw(screen)
-    exitButton.draw(screen)
-    pygame.display.flip()
-    if startButton.clicked:
-        running = False
-    if exitButton.clicked:
-        pygame.quit()
+    screen.fill(BG)
 
+    if current == main:
+        draw_startBackground()
+        draw_title()
+        startButton.draw(screen)
+        exitButton.draw(screen)
 
-screen.fill((0, 0, 0))
-mainGame = True
-
-while mainGame:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if startButton.clicked:
+            current = game
+        if exitButton.clicked:
             pygame.quit()
+
+    elif current == game:
+        screen.fill(BG)
+
+
+
+    pygame.display.flip()
