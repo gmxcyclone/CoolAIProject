@@ -5,6 +5,7 @@ from pygame import mixer
 
 pygame.init()
 pygame.font.init()
+timer = pygame.time.Clock()
 
 # window
 screen_width = 640
@@ -108,6 +109,9 @@ while running:
                 frame = 0
 
         screen.blit(animation_list[frame], (210, 90))
+
+        timer.tick(60)
+        pygame.draw.rect(screen, 'white', [0, 300, 700, 200])
 
 
 
