@@ -16,8 +16,8 @@ red = (145, 70, 70)
 text = (191, 191, 191)
 
 # START BUTTON
-startButton = Button((145, 70, 70), (50, 0, 0), 100, 200, 175, 50, "Begin Séance")
-exitButton = Button((145, 70, 70), (50, 0, 0), 400, 200, 175, 50, "Exit Game")
+startButton = Button((145, 70, 70), (50, 0, 0), 140, 200, 175, 50, "Begin Séance")
+exitButton = Button((145, 70, 70), (50, 0, 0), 325, 200, 175, 50, "Exit Game")
 
 # background
 startBackground = pygame.image.load('assets/background.jpg')
