@@ -111,7 +111,8 @@ while running:
         screen.blit(animation_list[frame], (210, 40))
 
         timer.tick(60)
-        pygame.draw.rect(screen, 'white', [0, 350, 700, 200])
+        pygame.draw.rect(screen, (184, 134, 11), [0, 350, 700, 200])
+        pygame.draw.rect(screen, 	(139,69,19), [0, 350, 640, 200], 10)
 
 
 
