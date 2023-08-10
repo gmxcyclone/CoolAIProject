@@ -73,6 +73,13 @@ animation_talk = 3
 for x in range(animation_talk):
     animation_list.append(get_image(spriteSheet,  x, 82, 118, 2.5))
 
+
+#ANIMATIONs
+
+def idle(list, frames):
+    animation_list[frame]
+
+
 # SCREEN SELECT
 main = 0
 game = 1
