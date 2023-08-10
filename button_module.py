@@ -1,7 +1,8 @@
 import pygame
 
+
 class Button:
-    def __init__(self, color, hovered_color, x, y, width, height, text=''):
+    def __init__(self, color, hovered_color, x, y, width, height, text='', action=None):
         self.color = color
         self.hovered_color = hovered_color  # New attribute for hovered color
         self.x = x
@@ -23,6 +24,13 @@ class Button:
                 print("Click")
             if not pygame.mouse.get_pressed()[0]:
                 self.clicked = False
+                """if click[0] == 1 and action != None:
+                              if action == "Begin Séance":
+                                  game_loop()
+
+                              elif action == "Exit Game":
+                                  pygame.quit()
+                                  quit()"""
 
         if self.text != '':
             font = pygame.font.SysFont('Times New Roman', 30)
