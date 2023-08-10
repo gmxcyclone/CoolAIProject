@@ -1,7 +1,7 @@
 import pygame
 
 from button_module import Button
-
+from pygame import mixer
 
 pygame.init()
 pygame.font.init()
@@ -30,6 +30,7 @@ def draw_startBackground():
 mixer = pygame.mixer
 mixer.music.load('assets/forShet.mp3')
 mixer.music.play(-1)
+mixer.music.play()
 
 
 # title
