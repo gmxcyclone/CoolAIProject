@@ -24,6 +24,16 @@ exitButton = Button((145, 70, 70), (50, 0, 0), 345, 200, 175, 50, "Exit Game")
 startBackground = pygame.image.load('assets/background.jpg')
 
 
+# text speed
+boxFont = pygame.font.SysFont('Times New Roman', 24)
+timer = pygame.time.Clock()
+message = 'Daniyal is a stinky panchout who likes men'
+snip = boxFont.render('', True, 'white')
+counter = 0
+speed = 3
+done = False
+
+
 def draw_startBackground():
     screen.blit(startBackground, (0, 0))
 
@@ -52,14 +62,15 @@ screen.fill(BG)
 
 pygame.display.flip()
 
-
 spriteSheet = pygame.image.load('assets/sprite.png')
+
 
 def get_image(sheet, frame, width, height, scale):
     image = pygame.Surface((width, height))
     image.blit(sheet, (0, 0), ((frame * width), 0, width, height))
-    image = pygame.transform.scale(image, (width*scale, height*scale))
+    image = pygame.transform.scale(image, (width * scale, height * scale))
     return image
+
 
 animation_list = []
 animation_talk = 3
@@ -71,10 +82,10 @@ animation_list = []
 animation_talk = 3
 
 for x in range(animation_talk):
-    animation_list.append(get_image(spriteSheet,  x, 82, 118, 2.5))
+    animation_list.append(get_image(spriteSheet, x, 82, 118, 2.5))
 
 
-#ANIMATIONs
+# ANIMATIONs
 
 def idle(list, frames):
     animation_list[frame]
@@ -119,9 +130,14 @@ while running:
 
         timer.tick(60)
         pygame.draw.rect(screen, (184, 134, 11), [0, 350, 700, 200])
-        pygame.draw.rect(screen, 	(139,69,19), [0, 350, 640, 200], 10)
+        pygame.draw.rect(screen, (139, 69, 19), [0, 350, 640, 200], 10)
 
+        if counter < speed *len(message):
+            counter += 1
+        elif counter >= speed*len(message):
+            done = True
 
-
+        snip = boxFont.render(message[0:counter//speed], True, 'white')
+        screen.blit(snip, (20, 360))
 
     pygame.display.flip()
