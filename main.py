@@ -63,3 +63,16 @@ while running:
     startButton.draw(screen)
     exitButton.draw(screen)
     pygame.display.flip()
+    if startButton.clicked:
+        running = False
+    if exitButton.clicked:
+        pygame.quit()
+
+
+screen.fill((0, 0, 0))
+mainGame = True
+
+while mainGame:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
