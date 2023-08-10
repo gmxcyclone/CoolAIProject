@@ -14,7 +14,7 @@ class Button:
         pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.text), 0)
 
         if self.text != '':
-            font = pygame.font.SysFont('comicsans', 30)
+            font = pygame.font.SysFont('Times New Roman', 30)
 
 
 TestButton = Button((0,250,0), 150, 225, 250, 100, 'Test')
