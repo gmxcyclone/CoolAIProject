@@ -1,6 +1,6 @@
 import pygame
 
-from button import button
+from button_module import Button
 
 
 pygame.init()
@@ -14,7 +14,7 @@ text = (191, 191, 191)
 
 
 #START BUTTON
-startButton = button(red, 250, 200, 150, 50, "Start Chat")
+startButton = Button((145, 70, 70), 250, 200, 150, 50, "Start Chat")
 
 
 
@@ -38,6 +38,7 @@ while running:
 
 
     pygame.draw.rect(screen, red,(30, 20, 580, 140), 10)
+    startButton.draw(screen)
     text_title = txtFont.render("Ghost Chat", 1, text)
     screen.blit(text_title, (60, 20))
 
