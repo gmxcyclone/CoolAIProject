@@ -16,7 +16,8 @@ red = (145, 70, 70)
 text = (191, 191, 191)
 
 # START BUTTON
-startButton = Button((145, 70, 70), (50, 0, 0), 250, 200, 175, 50, "Begin Séance")
+startButton = Button((145, 70, 70), (50, 0, 0), 100, 200, 175, 50, "Begin Séance")
+exitButton = Button((145, 70, 70), (50, 0, 0), 400, 200, 175, 50, "Exit Game")
 
 # background
 startBackground = pygame.image.load('assets/background.jpg')
@@ -60,5 +61,5 @@ while running:
     draw_startBackground()
     draw_title()
     startButton.draw(screen)
-
+    exitButton.draw(screen)
     pygame.display.flip()
