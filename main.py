@@ -1,4 +1,6 @@
-import pygame, button
+import pygame
+
+from button import button
 
 
 pygame.init()
@@ -10,6 +12,9 @@ BG = (0, 0, 0) #black
 red = (145, 70, 70)
 text = (191, 191, 191)
 
+
+#START BUTTON
+startButton = button(red, 250, 200, 150, 50, "Start Chat")
 
 
 
