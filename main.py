@@ -87,9 +87,8 @@ for x in range(animation_talk):
 
 # ANIMATIONs
 
-def idle():
-
-
+def idle(list, frames):
+    animation_list[frame]
 
 
 # SCREEN SELECT
