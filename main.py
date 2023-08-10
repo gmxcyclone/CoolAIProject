@@ -5,6 +5,7 @@ from button_module import Button
 
 pygame.init()
 pygame.font.init()
+pygame.mixer.init()
 
 # window
 screen_width = 640
@@ -27,6 +28,7 @@ def draw_startBackground():
 
 
 # background Sound
+
 mixer.music.load('assets/forShet.mp3')
 mixer.music.play(-1)
 
