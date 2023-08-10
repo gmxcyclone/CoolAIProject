@@ -28,7 +28,6 @@ def draw_startBackground():
 
 # background Sound
 mixer.music.load('assets/forShet.mp3')
-
 mixer.music.play(-1)
 
 
