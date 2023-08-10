@@ -107,7 +107,7 @@ while running:
             if frame >= len(animation_list) - 1:
                 frame = 0
 
-        screen.blit(animation_list[frame], (0, 0))
+        screen.blit(animation_list[frame], (210, 90))
 
 
 
