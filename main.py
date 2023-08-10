@@ -1,8 +1,9 @@
-import pygame
+import pygame, button
 
 
 pygame.init()
 pygame.font.init()
+
 
 #COLORS
 BG = (0, 0, 0) #black
