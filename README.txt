@@ -1,1 +1,1 @@
-Me and Shet game lol cool ai
+We are working on a game developed using pygame which will integrate OpenAI
