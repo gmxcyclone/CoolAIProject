@@ -77,6 +77,8 @@ animation_talk = 3
 last_update = pygame.time.get_ticks()
 animation_cooldown = 500
 frame = 0
+idleCount = 1
+dir = 1
 
 animation_list = []
 animation_talk = 3
@@ -85,7 +87,26 @@ for x in range(animation_talk):
     animation_list.append(get_image(spriteSheet, x, 82, 118, 2.5))
 
 
+<<<<<<< HEAD
 # ANIMATIONs
+=======
+#ANIMATIONS
+
+pos = {
+    0: (200, 40),
+    1: (210, 40),
+    2: (220, 40),
+    3: (210, 40)
+}
+def idle(frame):
+
+    x_pos, y_pos = pos[frame]
+    screen.blit(animation_list[1], (x_pos, y_pos))
+
+def talking(frame):
+    screen.blit(animation_list[frame], (210, 40))
+
+>>>>>>> animation
 
 def idle(list, frames):
     animation_list[frame]
@@ -122,11 +143,12 @@ while running:
         current_time = pygame.time.get_ticks()
         if current_time - last_update >= animation_cooldown:
             frame += 1
+
             last_update = current_time;
-            if frame >= len(animation_list) - 1:
+            if frame >= len(animation_list) + 1:
                 frame = 0
 
-        screen.blit(animation_list[frame], (210, 40))
+        idle(frame)
 
         timer.tick(60)
         pygame.draw.rect(screen, (184, 134, 11), [0, 350, 700, 200])
