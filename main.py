@@ -6,25 +6,33 @@ from button_module import Button
 pygame.init()
 pygame.font.init()
 
-#window
+# window
 screen_width = 640
 screen_height = 480
 
-
-#COLORS
-BG = (0, 0, 0) #black
+# COLORS
+BG = (0, 0, 0)  # black
 red = (145, 70, 70)
 text = (191, 191, 191)
 
-
-#START BUTTON
+# START BUTTON
 startButton = Button((145, 70, 70), 250, 200, 150, 50, "Start Chat")
 
-#background
+# background
 startBackground = pygame.image.load('assets/background.jpg')
-def draw_startBackground():
-    screen.blit(startBackground, (0,0))
 
+
+def draw_startBackground():
+    screen.blit(startBackground, (0, 0))
+
+
+# background Sound
+mixer.music.load('assets/forShet.mp3')
+
+mixer.music.play(-1)
+
+
+# title
 def draw_title():
     pygame.draw.rect(screen, red, (30, 20, 580, 140), 10)
     text_title = txtFont.render("Ghost Chat", 1, text)
@@ -51,10 +59,5 @@ while running:
     draw_startBackground()
     draw_title()
     startButton.draw(screen)
-
-
-
-
-
 
     pygame.display.flip()
