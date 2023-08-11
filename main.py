@@ -78,7 +78,7 @@ last_update = pygame.time.get_ticks()
 animation_cooldown = 500
 frame = 0
 idleCount = 1
-dir = 1
+isTalking = False
 
 animation_list = []
 animation_talk = 3
@@ -142,16 +142,26 @@ while running:
             if frame >= len(animation_list) + 1:
                 frame = 0
 
-        idle(frame)
+        if isTalking == False:
+            if frame >= len(animation_list) + 1:
+                frame = 0
+            idle(frame)
+
+        elif isTalking == True:
+            if frame >= len(animation_list) - 1:
+                frame = 0
+            talking(frame)
 
         timer.tick(60)
         pygame.draw.rect(screen, (184, 134, 11), [0, 350, 700, 200])
         pygame.draw.rect(screen, (139, 69, 19), [0, 350, 640, 200], 10)
 
         if counter < speed *len(message):
+            isTalking = True
             counter += 1
         elif counter >= speed*len(message):
             done = True
+            isTalking = False
 
         snip = boxFont.render(message[0:counter//speed], True, 'white')
         screen.blit(snip, (20, 360))
