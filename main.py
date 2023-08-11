@@ -3,6 +3,7 @@ import pygame
 from button_module import Button
 from pygame import mixer
 
+# test
 pygame.init()
 pygame.font.init()
 timer = pygame.time.Clock()
@@ -22,7 +23,6 @@ exitButton = Button((145, 70, 70), (50, 0, 0), 345, 200, 175, 50, "Exit Game")
 
 # background
 startBackground = pygame.image.load('assets/background.jpg')
-
 
 # text speed
 boxFont = pygame.font.SysFont('Times New Roman', 24)
@@ -132,12 +132,12 @@ while running:
         pygame.draw.rect(screen, (184, 134, 11), [0, 350, 700, 200])
         pygame.draw.rect(screen, (139, 69, 19), [0, 350, 640, 200], 10)
 
-        if counter < speed *len(message):
+        if counter < speed * len(message):
             counter += 1
-        elif counter >= speed*len(message):
+        elif counter >= speed * len(message):
             done = True
 
-        snip = boxFont.render(message[0:counter//speed], True, 'white')
+        snip = boxFont.render(message[0:counter // speed], True, 'white')
         screen.blit(snip, (20, 360))
 
     pygame.display.flip()
