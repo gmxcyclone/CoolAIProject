@@ -56,7 +56,6 @@ def display_text(surface, text, font, speed, position, color):
     global isTalking
 
     done = False
-    isTalking = False
 
     pygame.draw.rect(screen, (184, 134, 11), [0, 350, 700, 200])
     pygame.draw.rect(screen, (139, 69, 19), [0, 350, 640, 200], 10)
@@ -75,7 +74,6 @@ def display_text(surface, text, font, speed, position, color):
                 y += word_height
 
             surface.blit(word_surface, (x, y))
-            isTalking = True
             x += word_width + space
         x = position[0]
         y += word_height
@@ -128,6 +126,8 @@ idleCount = 1
 isTalking = False
 user_speech = ""
 prev_user_speech = ""
+talkingDuration = 10000
+talkingStartTime = 0
 
 animation_list = []
 animation_talk = 3
@@ -146,13 +146,8 @@ def idle(frame):
 
 
 def talking(frame):
-    time = pygame.time.get_ticks()
-
-    while time <= 1000:
         screen.blit(animation_list[frame], (210, 40))
-        time = pygame.time.get_ticks()
 
-    isTalking == False
 
 
 
@@ -179,11 +174,16 @@ while running:
 
     if event.type == pygame.MOUSEBUTTONDOWN:
         if recordButton.rect.collidepoint(event.pos):
+            isTalking = True
+            talkingStartTime = current_time
+
             if recording_thread is None or not recording_thread.is_alive():
                 recording_thread = threading.Thread(target=start_recording)
                 recording_thread.start()
 
                 response = createResponse(user_speech)
+
+
 
 
 
@@ -216,11 +216,18 @@ while running:
             if frame >= len(animation_list) + 1:
                 frame = 0
             idle(frame)
+            talkingCount = 0
 
         elif isTalking == True:
-            if frame >= len(animation_list) - 1:
-                frame = 0
-            talking(frame)
+                if frame >= len(animation_list) - 1:
+                    frame = 0
+                talking(frame)
+                if current_time - talkingStartTime >= talkingDuration:
+                    isTalking = False
+
+
+
+
 
         timer.tick(60)
         pygame.draw.rect(screen, (184, 134, 11), [0, 350, 700, 200])
@@ -231,7 +238,8 @@ while running:
 
         if user_speech:
             display_text(screen, response, boxFont, speed, (15, 360), "white")
-            isTalking = True
+
+
 
 
 

@@ -14,11 +14,12 @@ def createResponse(user_speech):
     completion = openai.ChatCompletion.create(
         model=model_engine,
         messages=messages,
-        max_tokens=150,
+        max_tokens=50,
         temperature=0.7,
     )
 
     response = completion.choices[0].message['content']
+    print(response)
     return response
 
 
