@@ -35,22 +35,6 @@ messages = Queue()
 recordings = Queue()
 
 
-def start_recording(data):
-    messages.put(True)
-
-    with output:
-        display("Recording...")
-        record = Thread(target=record_microphone)
-        record.start()
-
-        transcribe = Thread(target=speechrecognition, args=(output,))
-        transcribe.start()
-
-
-def stop_recording(data):
-    with output:
-        messages.get()
-        display("Stopped")
 
 
 # background
