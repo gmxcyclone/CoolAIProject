@@ -2,6 +2,8 @@ import pygame
 
 from button_module import Button
 from pygame import mixer
+from threading import Thread
+from queue import Queue
 
 pygame.init()
 pygame.font.init()
@@ -20,9 +22,24 @@ text = (191, 191, 191)
 startButton = Button((145, 70, 70), (50, 0, 0), 120, 200, 175, 50, "Begin Séance")
 exitButton = Button((145, 70, 70), (50, 0, 0), 345, 200, 175, 50, "Exit Game")
 
+recordButton = Button((56, 118, 29), (0, 143, 0), 0, 300, 175, 50, "record")
+stopButton = Button((195, 53, 43), (219, 60, 48), 465, 300, 175, 50, "stop")
+
+# record
+messages = Queue()
+recordings = Queue()
+
+
+def start_recording(data):
+    pass
+
+
+def stop_recording(data):
+    pass
+
+
 # background
 startBackground = pygame.image.load('assets/background.jpg')
-
 
 # text speed
 boxFont = pygame.font.SysFont('Times New Roman', 24)
@@ -86,9 +103,7 @@ animation_talk = 3
 for x in range(animation_talk):
     animation_list.append(get_image(spriteSheet, x, 82, 118, 2.5))
 
-
-
-#ANIMATIONS
+# ANIMATIONS
 
 pos = {
     0: (200, 40),
@@ -96,14 +111,15 @@ pos = {
     2: (220, 40),
     3: (210, 40)
 }
-def idle(frame):
 
+
+def idle(frame):
     x_pos, y_pos = pos[frame]
     screen.blit(animation_list[1], (x_pos, y_pos))
 
+
 def talking(frame):
     screen.blit(animation_list[frame], (210, 40))
-
 
 
 # SCREEN SELECT
@@ -156,14 +172,19 @@ while running:
         pygame.draw.rect(screen, (184, 134, 11), [0, 350, 700, 200])
         pygame.draw.rect(screen, (139, 69, 19), [0, 350, 640, 200], 10)
 
-        if counter < speed *len(message):
+        recordButton.draw(screen)
+        stopButton.draw(screen)
+
+        # recordButton.onClick(start_recording)
+
+        if counter < speed * len(message):
             isTalking = True
             counter += 1
-        elif counter >= speed*len(message):
+        elif counter >= speed * len(message):
             done = True
             isTalking = False
 
-        snip = boxFont.render(message[0:counter//speed], True, 'white')
+        snip = boxFont.render(message[0:counter // speed], True, 'white')
         screen.blit(snip, (20, 360))
 
     pygame.display.flip()
