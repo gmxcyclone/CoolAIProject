@@ -37,13 +37,13 @@ recordings = Queue()
 
 
 # background
-startBackground = pygame.image.load('assets/background.jpg')
+startBackground = pygame.image.load("assets/background.jpg")
 
 # text speed
-boxFont = pygame.font.SysFont('Times New Roman', 24)
+boxFont = pygame.font.SysFont("Times New Roman", 24)
 timer = pygame.time.Clock()
-snip = boxFont.render('', True, 'white')
-message = 'Daniyal is a stinky panchout who likes men'
+snip = boxFont.render("", True, "white")
+message = "Daniyal is a stinky panchout who likes men"
 counter = 0
 speed = 3
 done = False
@@ -67,8 +67,9 @@ def display_text(text, font, speed, position):
         done = True
         isTalking = False
 
-    snip = font.render(text[0:counter // speed], True, 'white')
+    snip = font.render(text[0 : counter // speed], True, "white")
     screen.blit(snip, position)
+
 
 def draw_startBackground():
     screen.blit(startBackground, (0, 0))
@@ -76,7 +77,7 @@ def draw_startBackground():
 
 # background Sound
 mixer = pygame.mixer
-mixer.music.load('assets/forShet.mp3')
+mixer.music.load("assets/forShet.mp3")
 mixer.music.play(-1)
 mixer.music.play()
 
@@ -88,7 +89,7 @@ def draw_title():
     screen.blit(text_title, (60, 20))
 
 
-txtFont = pygame.font.SysFont('Times New Roman', 110)
+txtFont = pygame.font.SysFont("Times New Roman", 110)
 
 screen = pygame.display.set_mode((640, 480))
 
@@ -98,7 +99,7 @@ screen.fill(BG)
 
 pygame.display.flip()
 
-spriteSheet = pygame.image.load('assets/sprite.png')
+spriteSheet = pygame.image.load("assets/sprite.png")
 
 
 def get_image(sheet, frame, width, height, scale):
@@ -115,7 +116,7 @@ animation_cooldown = 500
 frame = 0
 idleCount = 1
 isTalking = False
-user_speech = ''
+user_speech = ""
 
 animation_list = []
 animation_talk = 3
@@ -125,12 +126,7 @@ for x in range(animation_talk):
 
 # ANIMATIONS
 
-pos = {
-    0: (200, 40),
-    1: (210, 40),
-    2: (220, 40),
-    3: (210, 40)
-}
+pos = {0: (200, 40), 1: (210, 40), 2: (220, 40), 3: (210, 40)}
 
 
 def idle(frame):
@@ -141,10 +137,14 @@ def idle(frame):
 def talking(frame):
     screen.blit(animation_list[frame], (210, 40))
 
+
 recording_thread = None
+
+
 def start_recording():
     global user_speech
     user_speech = record()
+
 
 # SCREEN SELECT
 main = 0
@@ -184,7 +184,7 @@ while running:
         if current_time - last_update >= animation_cooldown:
             frame += 1
 
-            last_update = current_time;
+            last_update = current_time
             if frame >= len(animation_list) + 1:
                 frame = 0
 
@@ -208,9 +208,5 @@ while running:
 
         if user_speech:
             display_text(user_speech, boxFont, speed, (20, 360))
-
-
-
-
 
     pygame.display.flip()
