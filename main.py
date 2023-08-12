@@ -55,6 +55,9 @@ def display_text(text, font, speed, position):
     done = False
     isTalking = False
 
+    pygame.draw.rect(screen, (184, 134, 11), [0, 350, 700, 200])
+    pygame.draw.rect(screen, (139, 69, 19), [0, 350, 640, 200], 10)
+
     if counter < speed * len(text):
         isTalking = True
         counter += 1
@@ -188,7 +191,7 @@ while running:
 
         recordButton.draw(screen)
         stopButton.draw(screen)
-        display_text(message, boxFont, speed, (20, 360))
+
 
         if recordButton.clicked:
             user_speech = record()
