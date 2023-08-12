@@ -1,6 +1,7 @@
 import threading
-
 import pygame
+
+from gpt import createResponse
 
 from txt_speech import record
 from button_module import Button
@@ -14,7 +15,7 @@ pygame.font.init()
 timer = pygame.time.Clock()
 
 # window
-screen_width = 640
+screen_width = 600
 screen_height = 480
 
 # COLORS
@@ -134,6 +135,7 @@ frame = 0
 idleCount = 1
 isTalking = False
 user_speech = ""
+prev_user_speech = ""
 
 animation_list = []
 animation_talk = 3
@@ -167,6 +169,7 @@ def start_recording():
 main = 0
 game = 1
 current = main
+responseCount = 0
 
 running = True
 
@@ -180,6 +183,11 @@ while running:
             if recording_thread is None or not recording_thread.is_alive():
                 recording_thread = threading.Thread(target=start_recording)
                 recording_thread.start()
+
+                response = createResponse(user_speech)
+
+
+
 
     screen.fill(BG)
 
@@ -222,8 +230,11 @@ while running:
         recordButton.draw(screen)
         stopButton.draw(screen)
 
-
         if user_speech:
-            display_text(screen, user_speech, boxFont, speed, (15, 360), "white")
+            display_text(screen, response, boxFont, speed, (15, 360), "white")
+            isTalking = False
+
+
+
 
     pygame.display.flip()
