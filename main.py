@@ -191,7 +191,7 @@ while running:
 
         recordButton.draw(screen)
         stopButton.draw(screen)
-
+        display_text(message, boxFont, speed, (20, 360))
 
         if recordButton.clicked:
             user_speech = record()
