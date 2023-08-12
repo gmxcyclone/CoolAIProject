@@ -1,11 +1,9 @@
 import pygame
 
-
 from button_module import Button
 from pygame import mixer
 from threading import Thread
 from queue import Queue
-
 
 pygame.init()
 pygame.font.init()
@@ -27,20 +25,37 @@ exitButton = Button((145, 70, 70), (50, 0, 0), 345, 200, 175, 50, "Exit Game")
 recordButton = Button((56, 118, 29), (0, 143, 0), 0, 300, 175, 50, "record")
 stopButton = Button((195, 53, 43), (219, 60, 48), 465, 300, 175, 50, "stop")
 
-# record
-
-
 # background
 startBackground = pygame.image.load('assets/background.jpg')
 
 # text speed
 boxFont = pygame.font.SysFont('Times New Roman', 24)
 timer = pygame.time.Clock()
-message = 'Daniyal is a stinky panchout who likes men'
+message = 'Daniyal is a stinky panchout who likes men who also\n likes to go the gym'
 snip = boxFont.render('', True, 'white')
 counter = 0
 speed = 3
 done = False
+
+
+# textbox length
+def display_text(surface, texts, posi, font, color):
+    lines = texts.splitlines()
+    space = font.size(" ")[0]
+    x, y = posi
+
+    for line in lines:
+        words = line.split()
+        for word in words:
+            word_surface = font.render(word, True, color)
+            word_width, word_height = word_surface.get_size()
+            if x + word_width >= 640:
+                x = posi[0]
+                y += word_height
+            surface.blit(word_surface, (x, y))
+            x += word_width + space
+        x = posi[0]
+        y += word_height
 
 
 def draw_startBackground():
@@ -167,7 +182,7 @@ while running:
         recordButton.draw(screen)
         stopButton.draw(screen)
 
-
+        display_text(screen, message, (0, 100), txtFont, 'white')
 
         if counter < speed * len(message):
             isTalking = True
