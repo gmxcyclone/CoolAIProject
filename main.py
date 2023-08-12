@@ -52,6 +52,9 @@ def display_text(text, font, speed, position):
     global done
     global isTalking
 
+    done = False
+    isTalking = False
+
     if counter < speed * len(text):
         isTalking = True
         counter += 1
@@ -190,8 +193,9 @@ while running:
         if recordButton.clicked:
             user_speech = record()
             print("Recorded Text:", user_speech)
-            display_text(user_speech, boxFont, speed, (20, 360))  # Display the recorded text
 
+
+            display_text(user_speech, boxFont, speed, (20, 360))
 
 
 
