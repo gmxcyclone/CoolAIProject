@@ -1,3 +1,5 @@
+import threading
+
 import pygame
 
 from txt_speech import record
@@ -113,6 +115,7 @@ animation_cooldown = 500
 frame = 0
 idleCount = 1
 isTalking = False
+user_speech = ''
 
 animation_list = []
 animation_talk = 3
@@ -138,6 +141,10 @@ def idle(frame):
 def talking(frame):
     screen.blit(animation_list[frame], (210, 40))
 
+recording_thread = None
+def start_recording():
+    global user_speech
+    user_speech = record()
 
 # SCREEN SELECT
 main = 0
@@ -150,6 +157,12 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        if recordButton.rect.collidepoint(event.pos):
+            if recording_thread is None or not recording_thread.is_alive():
+                recording_thread = threading.Thread(target=start_recording)
+                recording_thread.start()
 
     screen.fill(BG)
 
@@ -193,11 +206,7 @@ while running:
         stopButton.draw(screen)
         display_text(message, boxFont, speed, (20, 360))
 
-        if recordButton.clicked:
-            user_speech = record()
-            print("Recorded Text:", user_speech)
-
-
+        if user_speech:
             display_text(user_speech, boxFont, speed, (20, 360))
 
 
