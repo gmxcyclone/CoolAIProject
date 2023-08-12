@@ -73,20 +73,12 @@ def display_text(surface, text, font, speed, position, color):
             if x + word_width >= 640:
                 x = position[0]
                 y += word_height
+
             surface.blit(word_surface, (x, y))
+            isTalking = True
             x += word_width + space
         x = position[0]
         y += word_height
-
-    if counter < speed * len(text):
-        isTalking = True
-        counter += 1
-    elif counter >= speed * len(text):
-        done = True
-        isTalking = False
-
-    snip = font.render(text[0 : counter // speed], True, "white")
-    screen.blit(snip, position)
 
 
 def draw_startBackground():
@@ -154,7 +146,14 @@ def idle(frame):
 
 
 def talking(frame):
-    screen.blit(animation_list[frame], (210, 40))
+    time = pygame.time.get_ticks()
+
+    while time <= 1000:
+        screen.blit(animation_list[frame], (210, 40))
+        time = pygame.time.get_ticks()
+
+    isTalking == False
+
 
 
 recording_thread = None
@@ -232,7 +231,7 @@ while running:
 
         if user_speech:
             display_text(screen, response, boxFont, speed, (15, 360), "white")
-            isTalking = False
+            isTalking = True
 
 
 
