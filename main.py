@@ -49,7 +49,7 @@ speed = 3
 done = False
 
 
-def display_text(surface, text, font, speed, position, color):
+def display_text(text, font, speed, position):
     global counter
     global done
     global isTalking
@@ -59,23 +59,6 @@ def display_text(surface, text, font, speed, position, color):
 
     pygame.draw.rect(screen, (184, 134, 11), [0, 350, 700, 200])
     pygame.draw.rect(screen, (139, 69, 19), [0, 350, 640, 200], 10)
-
-    lines = text.splitlines()
-    space = font.size(" ")[0]
-    x, y = position
-
-    for line in lines:
-        words = line.split()
-        for word in words:
-            word_surface = font.render(word, True, color)
-            word_width, word_height = word_surface.get_size()
-            if x + word_width >= 640:
-                x = position[0]
-                y += word_height
-            surface.blit(word_surface, (x, y))
-            x += word_width + space
-        x = position[0]
-        y += word_height
 
     if counter < speed * len(text):
         isTalking = True
@@ -160,7 +143,7 @@ recording_thread = None
 
 def start_recording():
     global user_speech
-    user_speech = record()
+    user_speech = record().capitalize()
 
 
 # SCREEN SELECT
@@ -222,8 +205,7 @@ while running:
         recordButton.draw(screen)
         stopButton.draw(screen)
 
-
         if user_speech:
-            display_text(screen, user_speech, boxFont, speed, (15, 360), "white")
+            display_text(user_speech + '.', boxFont, speed, (20, 360))
 
     pygame.display.flip()
