@@ -1,4 +1,5 @@
 import pygame
+import txt_speech
 
 from button_module import Button
 from pygame import mixer
@@ -33,19 +34,33 @@ messages = Queue()
 recordings = Queue()
 
 
-
 # background
 startBackground = pygame.image.load('assets/background.jpg')
 
 # text speed
 boxFont = pygame.font.SysFont('Times New Roman', 24)
 timer = pygame.time.Clock()
-message = 'Daniyal is a stinky panchout who likes men'
 snip = boxFont.render('', True, 'white')
+message = 'Daniyal is a stinky panchout who likes men'
 counter = 0
 speed = 3
 done = False
 
+
+def display_text(text, font, speed, position):
+    global counter
+    global done
+    global isTalking
+
+    if counter < speed * len(text):
+        isTalking = True
+        counter += 1
+    elif counter >= speed * len(text):
+        done = True
+        isTalking = False
+
+    snip = font.render(text[0:counter // speed], True, 'white')
+    screen.blit(snip, position)
 
 def draw_startBackground():
     screen.blit(startBackground, (0, 0))
@@ -172,14 +187,6 @@ while running:
         stopButton.draw(screen)
 
 
-        if counter < speed * len(message):
-            isTalking = True
-            counter += 1
-        elif counter >= speed * len(message):
-            done = True
-            isTalking = False
-
-        snip = boxFont.render(message[0:counter // speed], True, 'white')
-        screen.blit(snip, (20, 360))
+        display_text(message, boxFont, speed, (20, 360))
 
     pygame.display.flip()
