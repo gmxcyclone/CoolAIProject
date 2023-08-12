@@ -38,7 +38,7 @@ recordings = Queue()
 
 
 # background
-startBackground = pygame.image.load("assets/background.jpg")
+startBackground = pygame.image.load("assets/wallpaper.jpg.jpg")
 
 # text speed
 boxFont = pygame.font.SysFont("Times New Roman", 24)
