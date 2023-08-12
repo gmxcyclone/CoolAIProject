@@ -24,8 +24,8 @@ red = (145, 70, 70)
 text = (191, 191, 191)
 
 # START BUTTON
-startButton = Button((145, 70, 70), (50, 0, 0), 120, 200, 175, 50, "Begin Séance")
-exitButton = Button((145, 70, 70), (50, 0, 0), 345, 200, 175, 50, "Exit Game")
+startButton = Button((49,49,120), (50, 0, 0), 120, 400, 175, 50, "Begin Séance")
+exitButton = Button((49,49,120), (50, 0, 0), 345, 400, 175, 50, "Exit Game")
 
 recordButton = Button((56, 118, 29), (0, 143, 0), 0, 300, 175, 50, "record")
 stopButton = Button((195, 53, 43), (219, 60, 48), 465, 300, 175, 50, "stop")
@@ -38,7 +38,8 @@ recordings = Queue()
 
 
 # background
-startBackground = pygame.image.load("assets/wallpaper.jpg.jpg")
+startBackground = pygame.image.load("assets/wallpaper.jpg")
+gameBackground = pygame.image.load("assets/gamebg.jpg")
 
 # text speed
 boxFont = pygame.font.SysFont("Times New Roman", 24)
@@ -92,7 +93,7 @@ mixer.music.play()
 
 # title
 def draw_title():
-    pygame.draw.rect(screen, red, (30, 20, 580, 140), 10)
+    pygame.draw.rect(screen, 	(49,49,120), (30, 20, 580, 140), 10)
     text_title = txtFont.render("Ghost Chat", 1, text)
     screen.blit(text_title, (60, 20))
 
@@ -203,6 +204,7 @@ while running:
 
     elif current == game:
         screen.fill(BG)
+        screen.blit(gameBackground, (0,0))
 
         current_time = pygame.time.get_ticks()
         if current_time - last_update >= animation_cooldown:
