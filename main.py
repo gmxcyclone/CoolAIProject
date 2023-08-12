@@ -1,6 +1,6 @@
 import pygame
-import txt_speech
 
+from txt_speech import record
 from button_module import Button
 from pygame import mixer
 from threading import Thread
@@ -185,8 +185,16 @@ while running:
 
         recordButton.draw(screen)
         stopButton.draw(screen)
-
-
         display_text(message, boxFont, speed, (20, 360))
+
+        if recordButton.clicked:
+            user_speech = record()
+            print("Recorded Text:", user_speech)
+            display_text(user_speech, boxFont, speed, (20, 360))  # Display the recorded text
+
+
+
+
+
 
     pygame.display.flip()
