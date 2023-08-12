@@ -1,5 +1,4 @@
 import pygame
-import pyaudio
 
 
 from button_module import Button
@@ -29,28 +28,6 @@ recordButton = Button((56, 118, 29), (0, 143, 0), 0, 300, 175, 50, "record")
 stopButton = Button((195, 53, 43), (219, 60, 48), 465, 300, 175, 50, "stop")
 
 # record
-p = pyaudio.pyAudio()
-CHANNELS = 1
-messages = Queue()
-recordings = Queue()
-
-
-def start_recording(data):
-    messages.put(True)
-
-    with output:
-        display("Recording...")
-        record = Thread(target=record_microphone)
-        record.start()
-
-        transcribe = Thread(target=speechrecognition, args=(output,))
-        transcribe.start()
-
-
-def stop_recording(data):
-    with output:
-        messages.get()
-        display("Stopped")
 
 
 # background
@@ -190,11 +167,7 @@ while running:
         recordButton.draw(screen)
         stopButton.draw(screen)
 
-        if recordButton.clicked:
-            start_recording()
 
-        if startButton.clicked:
-            stop_recording()
 
         if counter < speed * len(message):
             isTalking = True
